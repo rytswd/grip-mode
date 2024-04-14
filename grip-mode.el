@@ -106,7 +106,11 @@ When nil, only update the preview on file save."
   :type 'integer
   :group 'grip)
 
-
+(defcustom grip-theme 'light
+  "Display theme, `light' or `dark', default is light."
+  :type '(choice (const :tag "light" light)
+                 (const :tag "dark" dark))
+  :group 'grip)
 
 ;; Externals
 (declare-function xwidget-buffer "xwidget")
@@ -171,6 +175,7 @@ Use default browser unless `xwidget' is available."
                            (format "--user=%s" grip-github-user)
                            (format "--pass=%s" grip-github-password)
                            (format "--title=%s - Grip" (buffer-name))
+                           (format "--theme=%s" grip-theme)
                            grip--preview-file
                            (number-to-string grip--port)))
 
